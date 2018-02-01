@@ -1,0 +1,7 @@
+com\example\demo\User.class
+com\example\demo\SearchCriteria.class
+com\example\demo\QuerydslExampleApplication.class
+com\example\demo\QUser.class
+com\example\demo\UserController.class
+com\example\demo\UserPredicate.class
+com\example\demo\UserRepository.class

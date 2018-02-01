@@ -1,0 +1,16 @@
+
+package com.example.demo;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
+import org.springframework.data.querydsl.binding.QuerydslBindings;
+
+/**
+ *
+ * @author binod
+ */
+public interface UserRepository  extends JpaRepository<User, Long>,QueryDslPredicateExecutor<User>{
+    
+    
+}
