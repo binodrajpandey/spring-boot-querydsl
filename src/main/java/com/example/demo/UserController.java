@@ -19,14 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    UserRepositoryCustom customRepo;
     @GetMapping
     public ResponseEntity<?> findAll(@RequestParam String firstName){
     	if(userRepository.count()==0) {
-    		User user=new User();
-        	user.setAge(10);
-        	user.setEmail("a1@gmail.com");
-        	user.setFirstName("A");
-        	userRepository.save(user);
+    		populateUser();
     	}
     	
         Predicate allStudent=QUser.user.firstName.eq(firstName);
@@ -34,5 +32,22 @@ public class UserController {
         return ResponseEntity.ok(allUsers);
         
     }
-    
+    @GetMapping("/custom")
+    public ResponseEntity<?> findAllWithCustomRepo(@RequestParam String firstName){
+    	if(userRepository.count()==0) {
+    		populateUser();
+    	}
+    	
+        Predicate allStudent=QUser.user.firstName.eq(firstName);
+        List<User> allUsers=(List<User>) userRepository.findAll(allStudent);
+        return ResponseEntity.ok(allUsers);
+        
+    }
+    public void populateUser() {
+    	User user=new User();
+    	user.setAge(10);
+    	user.setEmail("a1@gmail.com");
+    	user.setFirstName("A");
+    	userRepository.save(user);
+    }
 }
